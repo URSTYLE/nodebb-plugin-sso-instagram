@@ -21,7 +21,7 @@
     "url": "https://github.com/joe1chen/nodebb-plugin-sso-instagram/issues"
   },
   "dependencies": {
-    "passport-instagram": "^0.1.2",
+    "passport-instagram": "1.0.0",
     "shortid": "^2.1.2"
   },
   "nbbpm": {

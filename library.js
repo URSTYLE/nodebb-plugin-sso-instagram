@@ -123,6 +123,13 @@
       } else {
         // New User
         var success = function(uid, merge) {
+          // Auto verify users from instagram
+					var autoConfirm = true;
+					User.setUserField(uid, 'email:confirmed', autoConfirm);
+					if (autoConfirm) {
+						db.sortedSetRemove('users:notvalidated', uid);
+					}
+          
           // Save instagram-specific information to the user
           var data = {
             instagramId: instagramId,

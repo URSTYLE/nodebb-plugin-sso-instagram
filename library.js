@@ -123,13 +123,6 @@
       } else {
         // New User
         var success = function(uid, merge) {
-          // Auto verify users from instagram
-          var autoConfirm = true;
-          User.setUserField(uid, 'email:confirmed', autoConfirm);
-          if (autoConfirm) {
-            db.sortedSetRemove('users:notvalidated', uid);
-          }
-          
           // Save instagram-specific information to the user
           var data = {
             instagramId: instagramId,
@@ -170,8 +163,8 @@
           });
         };
 
-        // Create user with fake email because Instagram doesn't give it back to us.
-        var fakeEmail = username + '@instagram.com';
+        // Do not store fake email, nodebb will ask user to set up proper one
+        var fakeEmail = '';
         User.create({username: username, email: fakeEmail}, function(err, uid) {
           if(err) {
             return callback(err);
